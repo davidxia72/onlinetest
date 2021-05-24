@@ -39,12 +39,29 @@ namespace ConsoleApp1
                 leftRotate(arr, d); // Rotate array by 2
                 printArray(arr);
 
-                arr = new int[]{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
                 //rightRotate(arr, d); // Rotate array by 2
                 leftRotate(arr, arr.Length - d);
-               // Array.Reverse(arr);
+                // Array.Reverse(arr);
                 printArray(arr);
+            }
+            else if (userinput == "duplicate")
+            {
+                string str = "adjfkdffjfdorffg";
+                char[] arr = str.ToCharArray();
+                List<char> list = arr.ToList();
+                List<char> list_no_dup = list.Distinct().ToList();
+                arr = list_no_dup.ToArray();
+                Console.WriteLine(new string(arr));
+                str = "adjfkdffjfdorffg";
+                list = new List<char>();
+                foreach (char c in str)
+                {
+                    if (!list.Contains(c))
+                        list.Add(c);
+                }
+                Console.WriteLine(new string(list.ToArray()));
             }
             Console.ReadKey();
         }

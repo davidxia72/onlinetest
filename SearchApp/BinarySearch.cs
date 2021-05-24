@@ -300,6 +300,5 @@ namespace SearchApp
 
             return findMax(findHeight(root.leftChild), findHeight(root.rightChild)) + 1;
         }
-
     }
 }
