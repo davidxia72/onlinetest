@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SearchApp
 {
+    //Time Complexity of Dijkstra's Algorithm is  but with min-priority queue it drops down to V+ELogV.
     public class DijkstraAlgo
     {
         private int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)

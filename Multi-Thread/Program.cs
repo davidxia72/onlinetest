@@ -9,6 +9,8 @@ namespace Multi_Thread
     {
         static void Main(string[] args)
         {
+            TaskSample();
+            /*
             string userinput = Console.ReadLine();
             if (userinput == "deadlock")
             {
@@ -19,7 +21,7 @@ namespace Multi_Thread
                 tasks.Add(Task.Factory.StartNew(state => deadlock.ThreadJob2(), null));
                 // thread 3 cause deadlock
                // tasks.Add(Task.Factory.StartNew(state => deadlock.ThreadJob_deadlock(), null));
-                Task.WaitAll(tasks.ToArray());
+               // Task.WaitAll(tasks.ToArray());
             }
             else if (userinput == "task")
             {
@@ -76,6 +78,7 @@ namespace Multi_Thread
                 Semaphore s = new Semaphore();
                 for (int i = 1; i <= 5; i++) new Thread(s.Enter).Start(i);
             }
+            */
         }
         static void Go()
         {
@@ -130,29 +133,34 @@ namespace Multi_Thread
 
         /*Essentially, a task is a lightweight object for managing a parallelizable unit of work. A task avoids the overhead of starting a dedicated thread by using the CLR’s thread pool: this is the same thread pool used by ThreadPool.QueueUserWorkItem, tweaked in CLR 4.0 to work more efficiently with Tasks (and more efficiently in general).
         */
-        public static void TaskSample()
+        public async static void TaskSample()
         {
-            Task<string> task = Task.Factory.StartNew<string>(() =>    // Begin task
+            Task<string> task = Task.Factory.StartNew<string>((object myState) =>    // Begin task
             {
+                string i = myState.ToString();
+                Console.Write($"this is i");
                 using (var wc = new System.Net.WebClient())
                     return wc.DownloadString("http://www.linqpad.net");
-            });
-            var task1 = Task.Factory.StartNew(state => Greet("Hello"), "Greeting");
-           // task1.Wait();
-            for (int i = 0; i < 10; i++)
-            {
-                Thread.Sleep(500);
-                Console.Write("y");
-            }
-
+            }, 10);
+            task.Wait();
             string result = task.Result;
             Console.WriteLine(result);
+            var t =  Task.Run(() => Greet("Hello"));
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Thread.Sleep(500);
+            //    Console.Write("y");
+            //}
 
+
+            //
+            t.Wait();
+            Console.Write("end message");
         }
         static void Greet(string message) 
         {
             Console.Write("first message");
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
                 Console.Write(message); }
     }
 }

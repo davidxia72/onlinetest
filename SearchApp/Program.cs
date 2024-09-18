@@ -7,7 +7,21 @@ namespace SearchApp
         static void Main(string[] args)
         {
             string userinput = Console.ReadLine();
-            if (userinput == "tree")
+            if (userinput == "quicksort")
+            {
+                //int[] arr = { 50,23,9,18,61,32 };
+                int[] arr = { 1,2,3,4,5 };
+                //int[] arr = { 5, 4, 3, 2, 1 };
+                int n = arr.Length;
+
+                QuickSort ob = new QuickSort();
+                ob.sort(arr, 0, n - 1);
+                Console.WriteLine("sorted array");
+                for (int i = 0; i < n; ++i)
+                    Console.Write(arr[i] + " ");
+
+            }
+            else if (userinput == "tree")
             {
                 BinarySearch search = new BinarySearch(10);
                 search.insertBST(9);
@@ -64,7 +78,7 @@ namespace SearchApp
                           { 0, 36, 0, 0, 0, 0, 20 },
                           { 0, 0, 0, 96, 0, 0, 57 },
                           { 0, 0, 0, 0, 20, 57, 0 },
-                      
+
                             };
                 (new DijkstraAlgo()).excute(graph, 0, 7);
             }

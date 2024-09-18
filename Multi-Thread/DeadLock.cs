@@ -16,7 +16,7 @@ namespace Multi_Thread
                 Console.WriteLine("\t\t\t\tLocked firstLock");
                 // Wait until we're fairly sure the first thread
                 // has grabbed secondLock
-                Thread.Sleep(1000);
+                Thread.Sleep(10000);
                 Console.WriteLine("\t\t\t\tLocking secondLock");
                 lock (secondLock)
                 {
